@@ -15,9 +15,13 @@ namespace Nero_ETA
     public class VM : DependencyObject
     {
         private static readonly int startPosition = 14;
+
         private static int endPosition = 821;
+
         private static int pcbHeight = 28;
+
         private int error;
+
         private bool connect;
         private bool connected
         {
@@ -30,15 +34,17 @@ namespace Nero_ETA
         }
 
         private int FullTime;
+        public ObservableCollection<UIElement> PCB { get; } = new ObservableCollection<UIElement>();
+
+        private ColorAnimation colorAnimation = new ColorAnimation(Colors.Red, Colors.Black, TimeSpan.FromMilliseconds(1000));
+
+        private readonly Uri pcbUri = new Uri(System.IO.Directory.GetCurrentDirectory() + @"\PCB.jpg");
+
+        private BitmapImage pcb;
 
         public DelegateCommand FirstCommand { get; }
         public DelegateCommand LastCommand { get; }
         public DelegateCommand ResetCommand { get; }
-
-        private readonly Uri pcbUri = new Uri(System.IO.Directory.GetCurrentDirectory() + @"\PCB.jpg");
-        BitmapImage pcb;
-        public ObservableCollection<UIElement> PCB { get; } = new ObservableCollection<UIElement>();
-        private ColorAnimation colorAnimation = new ColorAnimation(Colors.Red, Colors.Black, TimeSpan.FromMilliseconds(1000));
 
         public VM()
         {
